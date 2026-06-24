@@ -1,0 +1,100 @@
+{
+  "name": "MCP Server",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "YOUR_MCP_SERVER_PATH"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "cd802a2c-5fdd-40f3-b6d0-7d4aad9d28d8",
+      "name": "MCP Server Trigger",
+      "webhookId": "YOUR_MCP_SERVER_PATH"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        80,
+        224
+      ],
+      "id": "d8962608-eca8-42a0-85a3-15952ab534ae",
+      "name": "Get many messages in Gmail",
+      "webhookId": "1d57a0bf-5904-4b35-86c8-743f2fe02df4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "yKWZLaO93yEqeHds",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        304,
+        208
+      ],
+      "id": "2202569c-b9f5-404a-a24b-4858ac761a46",
+      "name": "Send a message in Gmail",
+      "webhookId": "0f871b51-4675-4b1e-89a5-bec389d66f38",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "yKWZLaO93yEqeHds",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Get many messages in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 1,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}
