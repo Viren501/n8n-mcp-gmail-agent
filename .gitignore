@@ -1,0 +1,16 @@
+# n8n environment and credential caches
+.n8n/
+n8n-local-backups/
+*.env
+*.env.local
+
+# Operating system noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE, compiler, and editor configurations
+.vscode/
+.idea/
+*.swp
+*.log
