@@ -7,15 +7,7 @@ This repository contains a production-ready, decoupled automation architecture u
 ## 🧭 System Architecture & Framework
 
 Instead of forcing a single workflow to hold all credentials, logic, and triggers, this layout implements an advanced decoupled client-server architecture:
-┌────────────────────────┐              ┌────────────────────────┐
-│       MCP CLIENT       │              │       MCP SERVER       │
-│                        │              │                        │
-│  Chat Trigger          │              │  MCP Server Trigger    │
-│         │              │              │         │              │
-│  AI Agent (Gemini)     │ ──(HTTPS)──> │  Gmail API Tools       │
-│  Memory Buffer Window  │              │  - Fetch Mails         │
-│  MCP Client Tool       │              │  - Send Mails          │
-└────────────────────────┘              └────────────────────────┘
+![n8n MCP Gmail Architecture](assets/architecture-diagram.png)
 
 ### 1. The MCP Server (`workflows/MCP_Server.json`)
 Acts as a secure, stateless execution gatekeeper. It listens via an **MCP Server Trigger** and exposes two operational tools directly derived from your connected **Gmail API infrastructure**:
